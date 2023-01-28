@@ -147,7 +147,15 @@ export default function Home() {
                 Have any project, idea, or problems?
               </p>
 
-              <button className="text-sm bg-primary border border-primary text-white py-2 px-5 rounded-full hover:bg-white hover:text-primary hover:border hover:border-primary">
+              <button
+                className="text-sm bg-primary border border-primary text-white py-2 px-5 rounded-full hover:bg-white hover:text-primary hover:border hover:border-primary"
+                onClick={() => {
+                  contactRef?.current?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                  setNavbarOpen(false);
+                }}
+              >
                 Let&apos;s have a chat!
               </button>
             </div>
