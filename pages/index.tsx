@@ -7,9 +7,10 @@ import profile from "assets/profile.jpg";
 
 export default function Home() {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const contactRef = useRef();
-  const profileRef = useRef();
-  const skillRef = useRef();
+  const contactRef = useRef<null | HTMLDivElement>(null);
+  const profileRef = useRef<null | HTMLDivElement>(null);
+  const skillRef = useRef<null | HTMLDivElement>(null);
+
   return (
     <>
       <Head>
