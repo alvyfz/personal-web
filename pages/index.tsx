@@ -17,7 +17,7 @@ export default function Home() {
         <title>M. Alvy Eka Fauzi</title>
         <meta
           name="description"
-          content="Hello there, I'am Alvy.  A passionate web developer who will solve you problems and objectify your ideas. I build beautiful websites professionally, high attention to details and the most important, I love what I do."
+          content="M. Alvy Eka Fauzi - Hello there, I'am Alvy.  A passionate web developer who will solve you problems and objectify your ideas. I build beautiful websites professionally, high attention to details and the most important, I love what I do."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -26,12 +26,17 @@ export default function Home() {
         <nav className="fixed flex flex-wrap items-center justify-between w-full overflow-hidden px-2 py-3 bg-blur backdrop-blur-sm  mb-3 rounded-md shadow-sm">
           <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
             <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-              <a
-                className="text-3xl font-ternary   inline-block mr-4  primaryspace-nowrap text-gray-500 font-bold"
-                href="#pablo"
+              <div
+                className="text-3xl font-ternary   inline-block mr-4  primaryspace-nowrap text-gray-500 font-bold cursor-pointer"
+                onClick={() => {
+                  profileRef?.current?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                  setNavbarOpen(false);
+                }}
               >
                 A F
-              </a>
+              </div>
               <button
                 className="text-gray-500 cursor-pointer text-xl leading-none px-3  border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                 type="button"
@@ -49,8 +54,8 @@ export default function Home() {
             >
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 <li className="nav-item cursor-pointer">
-                  <a
-                    className="px-3 py-2 flex items-center text-sm uppercase  leading-snug  "
+                  <div
+                    className="px-3 py-2 flex items-center text-sm  cursor-pointer uppercase  leading-snug  "
                     onClick={() => {
                       profileRef?.current?.scrollIntoView({
                         behavior: "smooth",
@@ -61,7 +66,7 @@ export default function Home() {
                     <span className="ml-2 font-semibold text-gray-500 hover:text-primary font-sencondary ">
                       About
                     </span>
-                  </a>
+                  </div>
                 </li>
                 <li className="nav-item cursor-pointer">
                   <a
