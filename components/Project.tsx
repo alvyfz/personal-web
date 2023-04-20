@@ -87,11 +87,13 @@ interface BreadCumbInterface {
   title: string;
 }
 
-const BreadCumb = ({ title }): ReactElement => (
-  <div className="text-center px-2 text-sm bg-white border-primary border text-primary rounded-full">
-    {title}
-  </div>
-);
+const BreadCumb = ({ title }: { title: string }): ReactElement => {
+  return (
+    <div className="text-center px-2 text-sm bg-white border-primary border text-primary rounded-full">
+      {title}
+    </div>
+  );
+};
 const Card = (props: CardProps): ReactElement => {
   return (
     <div
