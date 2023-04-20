@@ -149,7 +149,7 @@ function Project(): ReactElement {
         className="font-bold font-secondary text-xl text-center uppercase"
       >
         {" "}
-        Projects I've Worked On
+        Projects I&apos;ve Worked On
       </h2>{" "}
       <div className="flex flex-col justify-center items-center w-full gap-8 mt-8">
         {data.map((v, i) => (
