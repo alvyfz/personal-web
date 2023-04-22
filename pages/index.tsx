@@ -135,7 +135,7 @@ export default function Home(): ReactElement {
               <Image
                 alt="profile"
                 src={profile}
-                className="max-w-[300px] max-h-[300px] object-contain rounded-full bg-gray-400 top-1 border-2 border-primary lg:hidden"
+                className="max-w-[300px] max-h-[300px] object-fill rounded-full bg-gray-400 top-1 border-2 border-primary lg:hidden"
               />
             </div>
             <div data-aos="fade-right">
