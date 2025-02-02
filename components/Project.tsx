@@ -132,7 +132,7 @@ const Card = (props: CardProps): ReactElement => {
       </div>
       <div className="flex justify-center items-center">
         <Image
-          alt="profile"
+          alt={props.title}
           src={props.img}
           height={200}
           width={300}
