@@ -101,6 +101,7 @@ const Card = (props: CardProps): ReactElement => {
         <div className="flex flex-row gap-4 items-center">
           <h2 className="text-left text-primary font-semibold">{props.title}</h2>
           <div className="flex flex-row items-center gap-5">
+            {props.isInProgress && <BreadCumb title={'In Progress'} />}
             <a target="_blank" rel="noopener noreferrer " href={props.url}>
               <div className="flex flex-row gap-1 items-center">
                 <Image alt={`website_${props.title}`} src={website} className="w-5 h-5" />
