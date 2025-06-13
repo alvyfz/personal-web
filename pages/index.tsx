@@ -25,8 +25,45 @@ export default function Home(): ReactElement {
           name="description"
           content="M. Alvy Eka Fauzi - Hello there, I'am Alvy.  A passionate web developer who will solve you problems and objectify your ideas. I build beautiful websites professionally, high attention to details and the most important, I love what I do."
         />
+        <meta
+          name="keywords"
+          content="Alvy, Web Developer, React, Next.js, Portfolio, Frontend, Programmer, JavaScript, Typescript, Indonesia, Freelancer, Website Development"
+        />
+        <meta name="author" content="M. Alvy Eka Fauzi" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="M. Alvy Eka Fauzi - Web Developer Portfolio" />
+        <meta
+          property="og:description"
+          content="A passionate web developer who will solve your problems and objectify your ideas. I build beautiful websites professionally, with high attention to detail."
+        />
+        <meta
+          property="og:image"
+          content="https://alvyfz.vercel.app/_next/image?url=%2Fassets%2Fprofile.jpg&w=384&q=75"
+        />
+        <meta property="og:url" content="https://alvyfz.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="M. Alvy Eka Fauzi - Web Developer Portfolio" />
+        <meta
+          name="twitter:description"
+          content="A passionate web developer who will solve your problems and objectify your ideas. I build beautiful websites professionally, with high attention to detail."
+        />
+        <meta
+          name="twitter:image"
+          content="https://alvyfz.vercel.app/_next/image?url=%2Fassets%2Fprofile.jpg&w=384&q=75"
+        />
+        <meta name="twitter:creator" content="@alvyfz" />
+        <meta httpEquiv="Content-Language" content="en" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        {/* Set language for html tag */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.documentElement.lang = "en";
+            `
+          }}
+        />
       </Head>
       <main className={styles.main}>
         <nav className="fixed flex flex-wrap items-center justify-between w-full overflow-hidden px-2 py-3 bg-blur backdrop-blur-sm  mb-3 rounded-md shadow-sm z-50">
@@ -128,7 +165,7 @@ export default function Home(): ReactElement {
               <div className=" container grid grid-cols-1 gap-16 md:grid-cols-2 justify-between pt-6 px-6 lg:px-24">
                 <div data-aos="fade-left" className="flex justify-center lg:hidden ">
                   <Image
-                    alt="profile"
+                    alt="Profile photo of M. Alvy Eka Fauzi"
                     src={profile}
                     className="max-w-[300px] max-h-[300px] object-fill rounded-full bg-gray-400 top-1 border-2 border-primary lg:hidden"
                   />
@@ -181,9 +218,8 @@ export default function Home(): ReactElement {
                   </button>
                 </div>
                 <div className="flex justify-end" data-aos="fade-left">
-                  {' '}
                   <Image
-                    alt="profile"
+                    alt="Profile photo of M. Alvy Eka Fauzi"
                     src={profile}
                     className="max-w-[300px] max-h-[300px] object-fill rounded-full bg-gray-400 top-1 border-2 border-primary hidden lg:inline"
                   />
