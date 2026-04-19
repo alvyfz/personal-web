@@ -1,9 +1,24 @@
 import Image from "next/image";
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import github from "assets/github.gif";
 import website from "assets/website.gif";
 
 const data: CardInterface[] = [
+  {
+    title: "Kulinary",
+    description:
+      "Kulinary is a restaurant operations platform featuring an owner dashboard, cashier POS, kitchen display system (KDS), and public QR menu—designed to keep daily operations fast, consistent, and easy to monitor.",
+    tags: [
+      "Tanstack Start",
+      "React JS",
+      "Typescript",
+      "HeroUI",
+      "Tailwind CSS",
+      "Appwrite",
+      "Responsive Design",
+    ],
+    url: "https://kulinary.aftech.cloud/",
+  },
   {
     title: "Luxe Materials",
     description:
@@ -17,9 +32,9 @@ const data: CardInterface[] = [
       "Framer Motion",
       "Responsive Design",
     ],
-    github: "https://github.com/alvyfz/interior-store",
     url: "https://luxe-materials.vercel.app/",
   },
+
   {
     title: "Inkwells",
     description:
