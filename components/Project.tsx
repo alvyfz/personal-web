@@ -1,214 +1,155 @@
 import Image from "next/image";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import github from "assets/github.gif";
 import website from "assets/website.gif";
+import {
+  archiveProjects,
+  featuredProjects,
+  ProjectItem,
+} from "@/data/siteContent";
+import SectionHeader from "@/components/SectionHeader";
 
-const data: CardInterface[] = [
-  {
-    title: "Kulinary",
-    description:
-      "Kulinary is a restaurant operations platform featuring an owner dashboard, cashier POS, kitchen display system (KDS), and public QR menu—designed to keep daily operations fast, consistent, and easy to monitor.",
-    tags: [
-      "Tanstack Start",
-      "React JS",
-      "Typescript",
-      "HeroUI",
-      "Tailwind CSS",
-      "Appwrite",
-      "Responsive Design",
-    ],
-    url: "https://kulinary.aftech.cloud/",
-  },
-  {
-    title: "Luxe Materials",
-    description:
-      "Luxe Materials is an elegant showcase for high-end interior and architecture materials. It features a polished user interface, smooth performance, and high attention to detail, built to provide a premium experience for architects and designers.",
-    tags: [
-      "Tanstack Start",
-      "React JS",
-      "Typescript",
-      "HeroUI",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Responsive Design",
-    ],
-    url: "https://luxe-materials.vercel.app/",
-  },
-
-  {
-    title: "Inkwells",
-    description:
-      "Inkwells is a platform for writing, reading, and sharing ideas. Find inspiring stories, share your thoughts, and join a community of passionate writers and readers.",
-    tags: ["Next JS", "Typescript", "Express JS", "MongoDB"],
-    github: "https://github.com/alvyfz/inkwell-web",
-    url: "https://inkwells.vercel.app/",
-    isInProgress: true,
-  },
-  {
-    title: "INICS",
-    description:
-      "Inics is a powerful, cloud-based Software-as-a-Service (SaaS) platform designed to streamline and modernize healthcare clinic management. Our intuitive system helps medical practitioners, clinics, and healthcare facilities automate administrative tasks, enhance patient care, and optimize operations—all in one secure, easy-to-use platform.",
-    tags: ["Next JS", "Typescript"],
-    github: undefined,
-    url: "https://inics-dev.vercel.app/",
-    isInProgress: true,
-  },
-  {
-    title: "My Property",
-    description:
-      "My Property is a web-based application that provides products and services for property purchases. My Property can facilitate property transactions that were previously complicated to become easier and more flexible. My Property is intended for millennials who have difficulty finding the property they want.",
-    tags: [
-      "React JS",
-      "Javascript",
-      "GraphQL",
-      "Boostrap React",
-      "Responsive Design",
-    ],
-    github: "https://github.com/alvyfz/myproperty-react-with-graphql",
-    url: "https://myproperty-six.vercel.app/",
-  },
-  {
-    title: "goodJobs",
-    description:
-      "goodJobs is an web-based platform to rent office spaces across Jakarta. goodjobs aims for the convenience of user when searching for a suitable working space in Jakarta’s business district areas.",
-    tags: [
-      "React JS",
-      "Echo Golang",
-      "Javascript",
-      "Go",
-      "GraphQL",
-      "Boostrap React",
-      "Responsive Design",
-    ],
-    github: "https://github.com/alvyfz/frontend-goodjobs",
-    url: "https://goodjobs-app.netlify.app/",
-  },
-  {
-    title: "Bacotan Native",
-    description:
-      "bacotan is a App Android with React Native with a group chat app feature with your friends.",
-    tags: ["React Native", "Javacript", "GraphQL", "Android"],
-    github: "https://github.com/alvyfz/bacotan-react-native",
-    url: "https://expo.dev/@alvyfz/bacotan?serviceType=classic&distribution=expo-go",
-  },
-  {
-    title: "Bacotan",
-    description:
-      "bacotan is a PWA-based web-app with a group chat app feature with your friends.",
-    tags: ["React JS", "Typescript", "GraphQL", "Material UI", "PWA"],
-    github: "https://github.com/alvyfz/bacotan-reactts-pwa-",
-    url: "https://bacotan.vercel.app/",
-  },
-  {
-    title: "Wedding Invitation",
-    description:
-      "Wedding solutions are more economical, practical and up to date with e-invitations that are distributed automatically.",
-    tags: [
-      "Vue JS",
-      "Nuxt JS",
-      "Javascript",
-      "Tailwind CSS",
-      "Responsive Design",
-    ],
-    github: "https://github.com/alvyfz/wedding-invitation-nuxt",
-    url: "https://wedding-invitation-alvyfz.netlify.app/",
-  },
-];
-
-interface CardInterface {
-  title: string;
-  description: string;
-  tags: string[];
-  github?: string;
-  url: string;
-  isInProgress?: boolean;
+interface ProjectProps {
+  title?: string;
+  description?: string;
+  showArchive?: boolean;
 }
 
-interface CardProps extends CardInterface {
-  aos: string;
-}
-interface BreadCumbInterface {
-  title: string;
-}
+const statusLabel: Record<NonNullable<ProjectItem["status"]>, string> = {
+  featured: "Featured",
+  "in-progress": "In Progress",
+  archive: "Archive",
+};
 
-const BreadCumb = ({ title }: { title: string }): ReactElement => {
+function Tag({ title }: { title: string }): ReactElement {
   return (
-    <div className="text-center px-2 text-sm bg-white border-primary border text-primary rounded-full">
+    <span className="rounded-full border border-brand-hairline bg-brand-surfaceSoft px-3 py-1 text-xs text-brand-body">
       {title}
-    </div>
+    </span>
   );
-};
-const Card = (props: CardProps): ReactElement => {
+}
+
+function ProjectCard({
+  project,
+  aos,
+}: {
+  project: ProjectItem;
+  aos: string;
+}): ReactElement {
   return (
-    <div className="max-w-[700px]" data-aos={props.aos}>
-      <div className="flex-col gap-3">
-        <div className="flex flex-row gap-4 items-center">
-          <h2 className="text-left text-primary font-semibold">
-            {props.title}
-          </h2>
-          <div className="flex flex-row items-center gap-5">
-            {props.isInProgress && <BreadCumb title={"In Progress"} />}
-            <a target="_blank" rel="noopener noreferrer " href={props.url}>
-              <div className="flex flex-row gap-1 items-center">
-                <Image
-                  alt={`website_${props.title}`}
-                  src={website}
-                  className="w-5 h-5"
-                />
-                <span className="text-primary text-sm font-medium underline">
-                  Visit
-                </span>
-              </div>
-            </a>
-
-            {props.github && (
-              <a target="_blank" rel="noopener noreferrer " href={props.github}>
-                <div className="flex flex-row gap-1 items-center">
-                  <Image
-                    alt={`github_${props.title}`}
-                    src={github}
-                    className="w-5 h-5"
-                  />
-                  <span className="text-primary text-sm font-medium underline">
-                    Github
-                  </span>
-                </div>
-              </a>
-            )}
-          </div>
-        </div>
-
-        <p className="text-left text-sm">{props.description}</p>
-        <div className="flex flex-row flex-wrap gap-1 mt-3">
-          {props.tags.map((v, i) => (
-            <BreadCumb key={i} title={v} />
-          ))}
-        </div>
+    <article
+      data-aos={aos}
+      className="flex h-full flex-col rounded-2xl border border-brand-hairline bg-brand-canvas p-6"
+    >
+      <div className="flex flex-wrap items-center gap-3">
+        <span className="rounded-full bg-brand-cream px-3 py-1 text-xs uppercase tracking-[0.18em] text-brand-ink">
+          {project.category}
+        </span>
+        {project.status && (
+          <span className="rounded-full border border-brand-hairline px-3 py-1 text-xs text-brand-muted">
+            {statusLabel[project.status]}
+          </span>
+        )}
       </div>
-    </div>
-  );
-};
 
-function Project(): ReactElement {
+      <h3 className="mt-5 font-primary text-2xl font-medium text-brand-ink">
+        {project.title}
+      </h3>
+      <p className="mt-3 text-sm leading-7 text-brand-body">
+        {project.description}
+      </p>
+
+      <div className="mt-5 rounded-2xl bg-brand-surfaceSoft p-4">
+        <p className="text-xs uppercase tracking-[0.18em] text-brand-muted">
+          Why it matters
+        </p>
+        <p className="mt-2 text-sm leading-7 text-brand-body">
+          {project.outcome}
+        </p>
+      </div>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {project.tags.map((tag) => (
+          <Tag key={tag} title={tag} />
+        ))}
+      </div>
+
+      <div className="mt-6 flex flex-wrap items-center gap-5">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={project.url}
+          className="inline-flex items-center gap-2 text-sm font-medium text-brand-link"
+        >
+          <Image
+            alt={`website_${project.title}`}
+            src={website}
+            className="h-5 w-5"
+          />
+          <span>Visit project</span>
+        </a>
+
+        {project.github && (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={project.github}
+            className="inline-flex items-center gap-2 text-sm font-medium text-brand-link"
+          >
+            <Image
+              alt={`github_${project.title}`}
+              src={github}
+              className="h-5 w-5"
+            />
+            <span>View source</span>
+          </a>
+        )}
+      </div>
+    </article>
+  );
+}
+
+export default function Project({
+  title = "Selected work that reflects my approach to product and interface delivery.",
+  description = "These projects showcase how I handle product structure, responsive implementation, UI clarity, and practical delivery across different types of digital experiences.",
+  showArchive = true,
+}: ProjectProps): ReactElement {
   return (
-    <div>
-      <h2
-        data-aos="fade-right"
-        className="font-bold font-secondary text-xl text-center uppercase"
-      >
-        Projects I&apos;ve Worked On
-      </h2>
-      <div className=" justify-center items-center w-full gap-8 mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-        {data.map((v, i) => (
-          <Card
-            key={v.title}
-            aos={i % 2 === 0 ? "fade-right" : "fade-left"}
-            {...v}
+    <div className="space-y-10">
+      <SectionHeader
+        eyebrow="Portfolio"
+        title={title}
+        description={description}
+      />
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        {featuredProjects.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            project={project}
+            aos={index % 2 === 0 ? "fade-up" : "fade-down"}
           />
         ))}
       </div>
+
+      {showArchive && (
+        <div className="space-y-8">
+          <SectionHeader
+            eyebrow="Archive"
+            title="Additional projects, experiments, and product explorations."
+            description="A broader view of the work that helped shape my frontend, product, and mobile development perspective over time."
+          />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {archiveProjects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
-export default Project;
